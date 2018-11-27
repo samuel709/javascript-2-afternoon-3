@@ -1,4 +1,4 @@
-/* 
+/*
   Once you complete a problem, refresh ./SpecRunner.html in your browser and check to see if the problem's test(s) are passing.
   Passed tests will be indicated by a green circle.
   Failed tests will be indicated by a red X.
@@ -27,8 +27,10 @@
   Then invoke the callback function, passing in the first element in the array as it's argument.
 */
 
-// Code Here 
-
+// Code Here
+function first(arr, cb){
+  return cb(arr[0]);
+}
 // Do not edit the code below.
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 
@@ -43,12 +45,14 @@ first(names, function(firstName){
 ////////// PROBLEM 2 //////////
 
 /*
-  Write a function called last that takes in an array and a callback function. 
+  Write a function called last that takes in an array and a callback function.
   Then invoke the callback, passing in the last element in the array as the argument.
 */
 
 //Code Here
-
+function last(arr, cb){
+  return cb(arr[arr.length - 1]);
+}
 // Do not edit the code below.
 last(names, function(lastName){
   console.log('The last name in names is ' + lastName);
@@ -61,12 +65,14 @@ last(names, function(lastName){
 ////////// PROBLEM 3 //////////
 
 /*
-  Write a function called multiply that takes in three parameters: two numbers and a callback function.  
-  Invoke the callback, passing in the product of the two numbers multiplied as the argument. 
+  Write a function called multiply that takes in three parameters: two numbers and a callback function.
+  Invoke the callback, passing in the product of the two numbers multiplied as the argument.
 */
 
 //Code Here
-
+function multiply(num1, num2, cb){
+  return cb(num1 * num2);
+}
 // Do not edit the code below.
 multiply(4, 3, function(answer){
   console.log('The answer is ' + answer); //should console.log 12
@@ -78,14 +84,20 @@ multiply(4, 3, function(answer){
 ////////// PROBLEM 4 //////////
 
 /*
-  Write a function called contains that takes in three parameters: an array, a name and a callback.  
-  Check if the name exists in the array. 
-  If it does, invoke the callback with true as the argument. 
+  Write a function called contains that takes in three parameters: an array, a name and a callback.
+  Check if the name exists in the array.
+  If it does, invoke the callback with true as the argument.
   If the name does not exist, invoke the callback with false as the argument.
 */
 
-//Code Here 
-
+//Code Here
+function contains(arr, name, cb){
+  for (let i = 0; i < arr.length; i++){
+    if (arr[i] === name) {
+      cb(true);
+    }
+  } cb(false);
+}
 // Do not edit the code below.
 contains(names, 'Colt', function(result){
   if(result === true){
@@ -106,7 +118,10 @@ contains(names, 'Colt', function(result){
 */
 
 //Code Here
-
+function uniq(arr, cb){
+  var uniqArr = arr.filter(function(val, i){return arr.indexOf(val) == i});
+  cb(uniqArr);
+}
 // Do not edit the code below.
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
@@ -117,13 +132,17 @@ uniq(names, function(uniqArr){
 
 ////////// PROBLEM 6 //////////
 
-/* 
-  Write a function called each that takes in an array of names and a callback function. 
+/*
+  Write a function called each that takes in an array of names and a callback function.
   For each name in the array, invoke the callback and pass in the name and the name's index as arguments.
 */
 
-//Code Here 
-
+//Code Here
+function each(arr, cb){
+  for (let i = 0; i < arr.length; i++){
+    cb(arr[i], i);
+  }
+}
 // Do not edit the code below.
 each(names, function(item, indice){
   console.log('The item in the ' + indice + ' position is ' + item)
@@ -140,7 +159,13 @@ each(names, function(item, indice){
 */
 
 // Code here
-
+function getUserById(arr, id, cb){
+  for (let i = 0; i < arr.length; i++){
+    if (arr[i].id === id){
+      cb(arr[i]);
+    }
+  }
+}
 // Do not edit the code below.
 var users = [
   {
@@ -164,6 +189,6 @@ var users = [
 ];
 
 getUserById(users, '16t', function(user){
-  console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address); 
+  console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address);
 });
 // Do not edit the code above.
